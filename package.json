@@ -12,8 +12,15 @@
     "build-prod": "webpack -p --mode production"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "bulma": "^0.8.2",
+    "express": "^4.17.1",
+    "mysql2": "^2.1.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "sequelize": "^5.21.7"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
