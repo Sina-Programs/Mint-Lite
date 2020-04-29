@@ -19,11 +19,8 @@
     "bulma": "^0.8.2",
     "express": "^4.17.1",
     "mysql2": "^2.1.0",
-<<<<<<< HEAD
     "nodemon": "^2.0.3",
-=======
     "prettier": "^2.0.5",
->>>>>>> 67cdbc1f2e820cfe44e6205f64f39fa5a607eba2
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "sequelize": "^5.21.7"
