@@ -1,10 +1,11 @@
 import React from "react";
 import Table from "./Table.jsx";
+import Display from "./Display.jsx";
 import axios from "axios";
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       transactions: [],
     };
@@ -19,7 +20,6 @@ class App extends React.Component {
     return axios
       .get("/api/transactions")
       .then((data) => {
-        console.log("transaction data", data.data);
         this.setState({
           transactions: data.data,
         });
@@ -32,6 +32,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
+        <Display transactions={this.state.transactions} />
         <Table transactions={this.state.transactions} />
       </div>
     );
