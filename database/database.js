@@ -2,7 +2,7 @@ const sequelize = require("sequelize");
 
 // create "budget" database in terminal mysql shell
 
-const db = new sequelize("budgets", "root", "Astnds19!", {
+const db = new sequelize("budgets", "root", "", {
   dialect: "mysql",
 });
 
