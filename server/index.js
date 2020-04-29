@@ -12,7 +12,7 @@ app.use(express.static(__dirname + "../dist/"));
 
 app.get("/api/transactions", (req, res) => {
   models
-    .getAll()
+    .getTransactions()
     .then((data) => {
       res.send(data);
     })
