@@ -4,9 +4,18 @@ import Pie from "./Pie.jsx";
 import axios from "axios";
 import * as d3 from "d3";
 
+//DATA GENERATOR FN
 function generateData(level) {
   const N = d3.randomUniform(1, 10)();
+  let word = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (var i = 0; i < characters.length; i++) {
+    word += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
   return d3.range(N).map((i) => ({
+    id: `${level}-${i}`,
+    name: word,
     value: Math.abs(d3.randomNormal()()),
     children: level > 0 ? generateData(level - 1) : [],
   }));
