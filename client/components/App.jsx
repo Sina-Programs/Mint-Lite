@@ -1,6 +1,7 @@
 import React from "react";
 import Table from "./Table.jsx";
 import axios from "axios";
+import AddTxnForm from "./addTxnForm.jsx";
 
 class App extends React.Component {
   constructor() {
@@ -9,6 +10,7 @@ class App extends React.Component {
       transactions: [],
     };
     this.getTransactions = this.getTransactions.bind(this);
+    this.addTransaction = this.addTransaction.bind(this);
   }
 
   componentDidMount() {
@@ -16,10 +18,9 @@ class App extends React.Component {
   }
 
   getTransactions() {
-    return axios
+    axios
       .get("/api/transactions")
       .then((data) => {
-        console.log("transaction data", data.data);
         this.setState({
           transactions: data.data,
         });
@@ -29,9 +30,22 @@ class App extends React.Component {
       });
   }
 
+  addTransaction(Txn) {
+    axios
+      .post("/api/transactions", Txn)
+      .then(() => {
+        this.getTransactions();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   render() {
     return (
       <div className="app">
+        <AddTxnForm addTransaction={this.addTransaction} />
+        <br />
         <Table transactions={this.state.transactions} />
       </div>
     );
