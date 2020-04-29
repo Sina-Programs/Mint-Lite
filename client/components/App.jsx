@@ -45,10 +45,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-
-        <AddTxnForm addTransaction={this.addTransaction} />
-        <br />
         <Display transactions={this.state.transactions} />
+        <br />
+        <AddTxnForm addTransaction={this.addTransaction} />
         <br />
         <Table transactions={this.state.transactions} />
       </div>
