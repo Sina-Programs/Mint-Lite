@@ -1,11 +1,12 @@
 import React from "react";
 import Table from "./Table.jsx";
+import Display from "./Display.jsx";
 import axios from "axios";
 import AddTxnForm from "./addTxnForm.jsx";
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       transactions: [],
     };
@@ -44,7 +45,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
+
         <AddTxnForm addTransaction={this.addTransaction} />
+        <br />
+        <Display transactions={this.state.transactions} />
         <br />
         <Table transactions={this.state.transactions} />
       </div>
