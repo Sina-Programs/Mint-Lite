@@ -1,9 +1,7 @@
-const db = require("../database/database.js")
+const db = require("../database/database.js");
+const util = require("util");
 
-const models = {
-    getTransacations: () => {
-        db.Transactions.findAll()
-    }
-}
-
-module.exports = models;
+const getTransactions = () => {
+  return db.Transactions.findAll();
+};
+module.exports = { getTransactions };
