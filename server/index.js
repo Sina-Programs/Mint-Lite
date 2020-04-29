@@ -11,10 +11,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "../dist")));
 
-// app.get("/", (req, res) => {
-//   res.render("/");
-// });
-
 app.get("/api/transactions", (req, res) => {
   models
     .getTransactions()
@@ -23,6 +19,20 @@ app.get("/api/transactions", (req, res) => {
     })
     .catch((err) => {
       console.log("error getting transaction data:", err);
+      res.sendStatus(400);
+    });
+});
+
+app.post("/api/transactions", (req, res) => {
+  console.log("POST REQUEST", req.body);
+  models
+    .addTransaction(req.body)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(400);
     });
 });
 
