@@ -1,10 +1,18 @@
-
 import React from "react";
+import Table from "./Table.jsx";
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
   render() {
-    const { name } = this.props;
-    return <h1>Hello {name}</h1>;
+    return (
+      <div>
+        <Table />
+      </div>
+    );
   }
 }
 
