@@ -16,6 +16,8 @@ function generateData(level) {
   return d3.range(N).map((i) => ({
     id: `${level}-${i}`,
     name: word,
+    level: level,
+    index: i,
     value: Math.abs(d3.randomNormal()()),
     children: level > 0 ? generateData(level - 1) : [],
   }));
