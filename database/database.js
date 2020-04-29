@@ -1,26 +1,22 @@
 const sequelize = require("sequelize");
 
-// create "budget"
+// create "budget" database in terminal mysql shell
 
 const db = new sequelize("budgets", "root", "mySQLDBMS", {
   dialect: "mysql",
 });
 
 const Transactions = db.define("transactions", {
-  date: { type: sequelize.STRING },
-  description: { type: sequelize.STRING },
-  amount: { type: sequelize.FLOAT },
+  txn_date: { type: sequelize.STRING },
+  txn_description: { type: sequelize.STRING },
+  txn_amount: { type: sequelize.FLOAT },
+  txn_type: { type: sequelize.STRING },
   category: { type: sequelize.STRING },
   account_name: { type: sequelize.STRING },
+  createdAt: { type: sequelize.DATE, allowNull: true },
+  updatedAt: { type: sequelize.DATE, allowNull: true },
 });
 
-const Accounts = db.define("accounts", {
-    account_name: { type: sequelize.STRING },
-    transaction_type: { type: sequelize.STRING },
-})
-
 Transactions.sync();
-Accounts.sync();
 
 module.exports.Transactions = Transactions;
-module.exports.Accounts = Accounts;
