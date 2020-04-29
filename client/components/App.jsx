@@ -5,7 +5,9 @@ import axios from "axios";
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      transactions: [],
+    };
     this.getTransactions = this.getTransactions.bind(this);
   }
 
@@ -17,7 +19,10 @@ class App extends React.Component {
     return axios
       .get("/api/transactions")
       .then((data) => {
-        console.log("transaction data", data);
+        console.log("transaction data", data.data);
+        this.setState({
+          transactions: data.data,
+        });
       })
       .catch((err) => {
         console.log("transaction get error:", err);
@@ -26,9 +31,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        {/* <Table /> */}
-        "hello world!"
+      <div className="app">
+        <Table transactions={this.state.transactions} />
       </div>
     );
   }
