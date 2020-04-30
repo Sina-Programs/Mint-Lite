@@ -53,7 +53,7 @@ class AddTxnForm extends React.Component {
             <input
               type="text"
               className="input inputSpace"
-              placeHolder="Description..."
+              placeholder="Description..."
               style={{ margin: "10px" }}
               onChange={this.handleDescriptionChange}
             />
@@ -62,7 +62,7 @@ class AddTxnForm extends React.Component {
             <input
               type="number"
               className="input inputSpace"
-              placeHolder="Amount..."
+              placeholder="Amount..."
               style={{ margin: "10px" }}
               onChange={this.handleAmountChange}
             />
@@ -71,7 +71,7 @@ class AddTxnForm extends React.Component {
             <input
               type="text"
               className="input inputSpace"
-              placeHolder="Category..."
+              placeholder="Category..."
               style={{ margin: "10px" }}
               onChange={this.handleCategoryChange}
             />
@@ -80,7 +80,7 @@ class AddTxnForm extends React.Component {
             <input
               type="text"
               className="input inputSpace"
-              placeHolder="Txn_type..."
+              placeholder="Txn_type..."
               style={{ margin: "10px" }}
               onChange={this.handleTypeChange}
             />

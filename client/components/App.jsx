@@ -6,7 +6,6 @@ import AddTxnForm from "./addTxnForm.jsx";
 
 // PieChart Dependencies
 import Pie from "./Pie.jsx";
-import axios from "axios";
 import * as d3 from "d3";
 
 //DATA GENERATOR FN
@@ -70,7 +69,7 @@ class App extends React.Component {
     const data = generateData(4);
     console.log(data);
 
-    return (   
+    return (
       <div className="app">
         <svg width="500" height="500">
           <Pie data={data} x={250} y={250} />
