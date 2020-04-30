@@ -12,8 +12,8 @@ const Arc = ({ arcData }) => {
   const [radiusAdd, setRadiusAdd] = useState(0);
   const arc = d3
     .arc()
-    .innerRadius(15 + radiusAdd)
-    .outerRadius(200 + radiusAdd);
+    .innerRadius(15 + radiusAdd / 2)
+    .outerRadius(200 + radiusAdd / 2);
 
   const mouseOver = () => {
     setRadiusAdd(20);

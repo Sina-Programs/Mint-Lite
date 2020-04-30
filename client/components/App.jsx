@@ -51,9 +51,14 @@ class App extends React.Component {
 
     return (
       <div>
-        <svg width="500" height="500">
-          <Pie data={data} x={250} y={250} />
-        </svg>
+        <div>
+          <svg width="500" height="500">
+            <Pie data={data} x={250} y={250} />
+          </svg>
+        </div>
+        <span role="img" aria-label="money-pie">
+          💵 🥧 💵
+        </span>
         {/* <Table /> */}
         "hello world!"
       </div>
