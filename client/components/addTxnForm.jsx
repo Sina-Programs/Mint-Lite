@@ -47,57 +47,61 @@ class AddTxnForm extends React.Component {
 
   render() {
     return (
-      <form>
-        <div className="level">
-          <div className="level-item">
-            <input
-              type="text"
-              className="input inputSpace"
-              placeholder="Description..."
-              style={{ margin: "10px" }}
-              onChange={this.handleDescriptionChange}
-            />
-          </div>
-          <div className="level-item">
-            <input
-              type="number"
-              className="input inputSpace"
-              placeholder="Amount..."
-              style={{ margin: "10px" }}
-              onChange={this.handleAmountChange}
-            />
-          </div>
-          <div className="level-item">
-            <input
-              type="text"
-              className="input inputSpace"
-              placeholder="Category..."
-              style={{ margin: "10px" }}
-              onChange={this.handleCategoryChange}
-            />
-          </div>
-          <div className="level-item">
-            <input
-              type="text"
-              className="input inputSpace"
-              placeholder="Txn_type..."
-              style={{ margin: "10px" }}
-              onChange={this.handleTypeChange}
-            />
-            <button
-              type="Submit"
-              className="button"
-              style={{ margin: "10px" }}
-              onClick={(event) => {
-                event.preventDefault();
-                this.props.addTransaction(this.state);
-              }}
-            >
-              Submit
-            </button>
-          </div>
+      <div className="columns is-centered">
+        <div className="column is-three-quarters">
+          <form>
+            <div className="level">
+              <div className="level-item">
+                <input
+                  type="text"
+                  className="input inputSpace"
+                  placeholder="Description..."
+                  style={{ margin: "10px" }}
+                  onChange={this.handleDescriptionChange}
+                />
+              </div>
+              <div className="level-item">
+                <input
+                  type="number"
+                  className="input inputSpace"
+                  placeholder="Amount..."
+                  style={{ margin: "10px" }}
+                  onChange={this.handleAmountChange}
+                />
+              </div>
+              <div className="level-item">
+                <input
+                  type="text"
+                  className="input inputSpace"
+                  placeholder="Category..."
+                  style={{ margin: "10px" }}
+                  onChange={this.handleCategoryChange}
+                />
+              </div>
+              <div className="level-item">
+                <input
+                  type="text"
+                  className="input inputSpace"
+                  placeholder="Txn_type..."
+                  style={{ margin: "10px" }}
+                  onChange={this.handleTypeChange}
+                />
+                <button
+                  type="Submit"
+                  className="button"
+                  style={{ margin: "10px" }}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    this.props.addTransaction(this.state);
+                  }}
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     );
   }
 }

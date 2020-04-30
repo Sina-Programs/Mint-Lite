@@ -44,33 +44,37 @@ class Display extends React.Component {
 
   render() {
     return (
-      <nav className="level">
-        <div className="level-item has-text-centered">
-          <div>
-            <p className="heading">Money In</p>
-            <p className="title has-text-success">${this.state.totalIn}</p>
-          </div>
-        </div>
-        <div className="level-item has-text-centered">
-          <div>
-            <p className="heading">Money Out</p>
-            <p className="title has-text-danger	">${this.state.totalOut}</p>
-          </div>
-        </div>
-        <div className="level-item has-text-centered">
-          {this.state.Net < 0 ? (
-            <div>
-              <p className="heading">Total</p>
-              <p className="title has-text-success">${this.state.Net}</p>
+      <div className="columns is-centered">
+        <div className="column is-four-fifths">
+          <nav className="level">
+            <div className="level-item has-text-centered">
+              <div>
+                <p className="heading">Money In</p>
+                <p className="title has-text-success">${this.state.totalIn}</p>
+              </div>
             </div>
-          ) : (
-            <div>
-              <p className="heading">Total</p>
-              <p className="title has-text-danger">${this.state.Net}</p>
+            <div className="level-item has-text-centered">
+              <div>
+                <p className="heading">Money Out</p>
+                <p className="title has-text-danger	">${this.state.totalOut}</p>
+              </div>
             </div>
-          )}
+            <div className="level-item has-text-centered">
+              {this.state.Net < 0 ? (
+                <div>
+                  <p className="heading">Total</p>
+                  <p className="title has-text-success">${this.state.Net}</p>
+                </div>
+              ) : (
+                <div>
+                  <p className="heading">Total</p>
+                  <p className="title has-text-danger">${this.state.Net}</p>
+                </div>
+              )}
+            </div>
+          </nav>
         </div>
-      </nav>
+      </div>
     );
   }
 }
