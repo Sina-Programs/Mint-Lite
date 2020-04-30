@@ -8,37 +8,26 @@ import AddTxnForm from "./addTxnForm.jsx";
 import Pie from "./Pie.jsx";
 import * as d3 from "d3";
 
-//DATA GENERATOR FN
-function generateData(level) {
-  const N = d3.randomUniform(1, 10)();
-  let word = "";
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  for (var i = 0; i < characters.length; i++) {
-    word += characters.charAt(Math.floor(Math.random() * characters.length));
-  }
-  return d3.range(N).map((i) => ({
-    id: `${level}-${i}`,
-    name: word,
-    level: level,
-    index: i,
-    value: Math.abs(d3.randomNormal()()),
-    children: level > 0 ? generateData(level - 1) : [],
-  }));
-}
-
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       transactions: [],
+      data: [],
     };
     this.getTransactions = this.getTransactions.bind(this);
     this.addTransaction = this.addTransaction.bind(this);
+    this.chartData = this.chartData.bind(this);
   }
 
   componentDidMount() {
     this.getTransactions();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.transactions !== this.state.transactions) {
+      this.chartData();
+    }
   }
 
   getTransactions() {
@@ -65,16 +54,45 @@ class App extends React.Component {
       });
   }
 
-  render() {
-    const data = generateData(4);
-    console.log(data);
+  chartData() {
+    let pieDataModel = {};
+    this.state.transactions.forEach((transaction) => {
+      var category = transaction.category;
+      if (!pieDataModel[category] && transaction.txn_type === "debit") {
+        pieDataModel[category] = transaction.txn_amount;
+      } else if (pieDataModel[category] && transaction.txn_type === "debit") {
+        pieDataModel[category] += transaction.txn_amount;
+      }
+    });
+    let array = [];
+    let i = 0;
+    for (var key in pieDataModel) {
+      var obj = {
+        value: pieDataModel[key],
+        name: key,
+        index: i,
+      };
+      i++;
+      array.push(obj);
+      if (i > 11) {
+        break;
+      }
+    }
+    this.setState(
+      {
+        data: array,
+      },
+      () => console.log(this.state.data)
+    );
+  }
 
+  render() {
     return (
       <div className="app">
         <div className="columns is-centered">
           <div className="column is-half" style={{ paddingLeft: "5%" }}>
             <svg width="500" height="500">
-              <Pie data={data} x={250} y={250} />
+              <Pie data={this.state.data} x={250} y={250} />
             </svg>
           </div>
         </div>
@@ -89,3 +107,35 @@ class App extends React.Component {
 }
 
 export default App;
+
+// DATA GENERATOR FN
+// function generateData(level) {
+//   const N = d3.randomUniform(1, 10)();
+//   let word = "";
+//   const characters =
+//     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+//   for (var i = 0; i < characters.length; i++) {
+//     word += characters.charAt(Math.floor(Math.random() * characters.length));
+//   }
+//   return d3.range(N).map((i) => ({
+//     id: `${level}-${i}`,
+//     name: word,
+//     level: level,
+//     index: i,
+//     value: Math.abs(d3.randomNormal()()),
+//     children: level > 0 ? generateData(level - 1) : [],
+//   }));
+// }
+
+// console.log()
+
+// getPieChartData() {
+//   axios
+//     .get("/api/chartData")
+//     .then((data) =>
+//       this.setState({
+//         PieChartData: data.data,
+//       })
+//     )
+//     .catch((err) => console.error(err));
+// }
