@@ -71,10 +71,13 @@ class App extends React.Component {
 
     return (
       <div className="app">
-        <svg width="500" height="500">
-          <Pie data={data} x={250} y={250} />
-        </svg>
-        <br />
+        <div className="columns is-centered">
+          <div className="column is-half" style={{ paddingLeft: "5%" }}>
+            <svg width="500" height="500">
+              <Pie data={data} x={250} y={250} />
+            </svg>
+          </div>
+        </div>
         <Display transactions={this.state.transactions} />
         <br />
         <AddTxnForm addTransaction={this.addTransaction} />

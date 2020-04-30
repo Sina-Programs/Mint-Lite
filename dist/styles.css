@@ -3,3 +3,9 @@
   overflow: auto;
   overflow-x: hidden;
 }
+
+#logo {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+}
