@@ -50,45 +50,38 @@ class AddTxnForm extends React.Component {
       <form>
         <div className="level">
           <div className="level-item">
-            <label className="label labelSpace" style={{ margin: "10px" }}>
-              Description:{" "}
-            </label>
             <input
               type="text"
               className="input inputSpace"
+              placeHolder="Description..."
+              style={{ margin: "10px" }}
               onChange={this.handleDescriptionChange}
             />
           </div>
           <div className="level-item">
-            <label className="label labelSpace" style={{ margin: "10px" }}>
-              {" "}
-              Amount:{" "}
-            </label>
             <input
               type="number"
               className="input inputSpace"
+              placeHolder="Amount..."
+              style={{ margin: "10px" }}
               onChange={this.handleAmountChange}
             />
           </div>
           <div className="level-item">
-            <label className="label labelSpace" style={{ margin: "10px" }}>
-              {" "}
-              Category:{" "}
-            </label>
             <input
               type="text"
               className="input inputSpace"
+              placeHolder="Category..."
+              style={{ margin: "10px" }}
               onChange={this.handleCategoryChange}
             />
           </div>
           <div className="level-item">
-            <label className="label labelSpace" style={{ margin: "10px" }}>
-              {" "}
-              Type:{" "}
-            </label>
             <input
               type="text"
               className="input inputSpace"
+              placeHolder="Txn_type..."
+              style={{ margin: "10px" }}
               onChange={this.handleTypeChange}
             />
             <button
