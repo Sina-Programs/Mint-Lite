@@ -1,5 +1,10 @@
 import React from "react";
 import Table from "./Table.jsx";
+import Display from "./Display.jsx";
+import axios from "axios";
+import AddTxnForm from "./addTxnForm.jsx";
+
+// PieChart Dependencies
 import Pie from "./Pie.jsx";
 import axios from "axios";
 import * as d3 from "d3";
@@ -24,10 +29,13 @@ function generateData(level) {
 }
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      transactions: [],
+    };
     this.getTransactions = this.getTransactions.bind(this);
+    this.addTransaction = this.addTransaction.bind(this);
   }
 
   componentDidMount() {
@@ -35,13 +43,26 @@ class App extends React.Component {
   }
 
   getTransactions() {
-    return axios
+    axios
       .get("/api/transactions")
       .then((data) => {
-        console.log("transaction data", data);
+        this.setState({
+          transactions: data.data,
+        });
       })
       .catch((err) => {
         console.log("transaction get error:", err);
+      });
+  }
+
+  addTransaction(Txn) {
+    axios
+      .post("/api/transactions", Txn)
+      .then(() => {
+        this.getTransactions();
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
@@ -49,18 +70,17 @@ class App extends React.Component {
     const data = generateData(4);
     console.log(data);
 
-    return (
-      <div>
-        <div>
-          <svg width="500" height="500">
-            <Pie data={data} x={250} y={250} />
-          </svg>
-        </div>
-        <span role="img" aria-label="money-pie">
-          💵 🥧 💵
-        </span>
-        {/* <Table /> */}
-        "hello world!"
+    return (   
+      <div className="app">
+        <svg width="500" height="500">
+          <Pie data={data} x={250} y={250} />
+        </svg>
+        <br />
+        <Display transactions={this.state.transactions} />
+        <br />
+        <AddTxnForm addTransaction={this.addTransaction} />
+        <br />
+        <Table transactions={this.state.transactions} />
       </div>
     );
   }
