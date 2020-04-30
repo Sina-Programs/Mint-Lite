@@ -1,5 +1,6 @@
 const db = require("../database/database.js");
 const util = require("util");
+const sequelize = require("sequelize");
 
 const getTransactions = () => {
   return db.Transactions.findAll({
@@ -16,4 +17,23 @@ const addTransaction = (Txn) => {
     category: Txn.category,
   });
 };
+
+// const getChartData = () => {
+//   return db.Transactions.findAll({
+//     attributes: [
+//       "category",
+//       [
+//         sequelize.fn("SUM", sequelize.col("txn_amount")),
+//         "get_total_spend_by_category",
+//       ],
+//     ],
+//     group: ["category"],
+//   })
+//     .then((data) => console.log(data))
+//     .catch((err) => console.error(err));
+// };
+
+// test
+// console.log(getChartData());
+
 module.exports = { getTransactions, addTransaction };

@@ -36,28 +36,38 @@ app.post("/api/transactions", (req, res) => {
     });
 });
 
-app.get("/api/dates", (req, res) => {
-  models
-    .getDates()
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      console.log("error getting dates data:", err);
-    });
-});
-
-app.get("/api/categories", (req, res) => {
-  models
-    .getCategories()
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      console.log("error getting categories data:", err);
-    });
-});
-
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
+
+// app.get("/api/chartData", (req, res) => {
+//   models
+//     .getChartData()
+//     .then((data) => res.send(data))
+//     .catch((err) => {
+//       console.error(err);
+//       res.sendStatus(400);
+//     });
+// });
+
+// app.get("/api/dates", (req, res) => {
+//   models
+//     .getDates()
+//     .then((data) => {
+//       res.send(data);
+//     })
+//     .catch((err) => {
+//       console.log("error getting dates data:", err);
+//     });
+// });
+
+// app.get("/api/categories", (req, res) => {
+//   models
+//     .getCategories()
+//     .then((data) => {
+//       res.send(data);
+//     })
+//     .catch((err) => {
+//       console.log("error getting categories data:", err);
+//     });
+// });
