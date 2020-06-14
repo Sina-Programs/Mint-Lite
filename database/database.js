@@ -1,12 +1,12 @@
-const sequelize = require("sequelize");
+const sequelize = require('sequelize');
 
 // create "budget" database in terminal mysql shell
 
-const db = new sequelize("budgets", "root", "", {
-  dialect: "mysql",
+const db = new sequelize('budgets', 'root', '', {
+  dialect: 'mysql',
 });
 
-const Transactions = db.define("transactions", {
+const Transactions = db.define('transactions', {
   txn_date: { type: sequelize.STRING },
   txn_description: { type: sequelize.STRING },
   txn_amount: { type: sequelize.FLOAT },

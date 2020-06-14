@@ -1,12 +1,12 @@
-import React from "react";
-import Table from "./Table.jsx";
-import Display from "./Display.jsx";
-import axios from "axios";
-import AddTxnForm from "./addTxnForm.jsx";
+import React from 'react';
+import Table from './Table.jsx';
+import Display from './Display.jsx';
+import axios from 'axios';
+import AddTxnForm from './addTxnForm.jsx';
 
 // PieChart Dependencies
-import Pie from "./Pie.jsx";
-import * as d3 from "d3";
+import Pie from './Pie.jsx';
+import * as d3 from 'd3';
 
 class App extends React.Component {
   constructor(props) {
@@ -32,20 +32,20 @@ class App extends React.Component {
 
   getTransactions() {
     axios
-      .get("/api/transactions")
+      .get('/api/transactions')
       .then((data) => {
         this.setState({
           transactions: data.data,
         });
       })
       .catch((err) => {
-        console.log("transaction get error:", err);
+        console.log('transaction get error:', err);
       });
   }
 
   addTransaction(Txn) {
     axios
-      .post("/api/transactions", Txn)
+      .post('/api/transactions', Txn)
       .then(() => {
         this.getTransactions();
       })
@@ -58,9 +58,9 @@ class App extends React.Component {
     let pieDataModel = {};
     this.state.transactions.forEach((transaction) => {
       var category = transaction.category;
-      if (!pieDataModel[category] && transaction.txn_type === "debit") {
+      if (!pieDataModel[category] && transaction.txn_type === 'debit') {
         pieDataModel[category] = transaction.txn_amount;
-      } else if (pieDataModel[category] && transaction.txn_type === "debit") {
+      } else if (pieDataModel[category] && transaction.txn_type === 'debit') {
         pieDataModel[category] += transaction.txn_amount;
       }
     });
@@ -88,10 +88,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="app">
-        <div className="columns is-centered">
-          <div className="column is-half" style={{ paddingLeft: "5%" }}>
-            <svg width="500" height="500">
+      <div className='app'>
+        <div className='columns is-centered'>
+          <div
+            className='column is-half'
+            style={{ margin: 'auto', paddingLeft: '12%' }}
+          >
+            <svg width='500' height='500'>
               <Pie data={this.state.data} x={250} y={250} />
             </svg>
           </div>
